@@ -60,6 +60,7 @@ const menuItems = [
     imageName: "takoyaki.png",
     price: 5.99,
   },
+  
   {
     id: 8,
     title: "Sashimi",
