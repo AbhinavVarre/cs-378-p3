@@ -15,10 +15,10 @@ const Subtotal = ({
     <>
       <div className="parentContainer">
         <h3 className="orderTotalText">Order Total: {orderTotal}</h3>
-        <div >
+        <div style={{display:'flex'}}>
           <button
             type="button"
-            style={{marginRight: '1em'}}
+            style={{marginRight:'1em'}}
             className="btn btn-outline-secondary orderButton"
             onClick={orderNotification}
             disabled={toastVisible}
