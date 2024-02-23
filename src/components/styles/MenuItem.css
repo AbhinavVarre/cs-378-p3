@@ -1,0 +1,61 @@
+.list-group-item {
+  border: none;
+  padding-top: 1em;
+}
+.itemRow {
+  display: flex;
+  /* justify-content: space-between; */
+}
+.menuImageContainer {
+  max-height: 20vh;
+  max-width: 40vw;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.menuImage {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  object-fit: cover;
+}
+
+.menuTextContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding-left: 1em;
+  padding-top: .5em
+
+}
+
+.itemNameText {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.menuItemDescriptionText {
+  font-weight: lighter;
+  font-size: 1.3em;
+}
+
+.buttonContainer {
+  display: flex;;
+  justify-content: space-between;
+  align-content: center;
+
+
+}
+
+.btn-outline-secondary {
+  border-radius: 4em;
+}
+
+.costText {
+  margin: 0;
+}
+
+.costContainer {
+  align-self: center;
+}
