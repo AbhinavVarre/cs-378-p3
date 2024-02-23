@@ -14,7 +14,7 @@ const Subtotal = ({
   return (
     <>
       <div className="parentContainer">
-        <h3 className="orderTotalText">Order Total: {orderTotal}</h3>
+        <h3 className="orderTotalText">Order Total: ${orderTotal}</h3>
         <div style={{display:'flex'}}>
           <button
             type="button"
