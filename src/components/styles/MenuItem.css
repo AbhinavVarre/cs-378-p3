@@ -32,24 +32,25 @@
 
 .itemNameText {
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 .menuItemDescriptionText {
   font-weight: lighter;
-  font-size: 1.3em;
+  font-size: 1em;
 }
 
 .buttonContainer {
   display: flex;;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-content: center;
 
 
 }
 
+
 .btn-outline-secondary {
-  border-radius: 4em;
+  border-radius: 100em;
 }
 
 .costText {

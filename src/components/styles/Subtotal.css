@@ -1,0 +1,11 @@
+.parentContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.buttonContainer {
+    justify-self: flex-end;
+}
+

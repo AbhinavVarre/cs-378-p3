@@ -1,6 +1,10 @@
 import "./App.css";
 import MenuItem from "./components/MenuItem";
 import MenuHeader from "./components/MenuHeader";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Subtotal from "./components/Subtotal";
 
 // import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. You can use bootstrap or your own classes by using the className attribute in your elements.
 
@@ -80,6 +84,89 @@ const menuItems = [
 ];
 
 function App() {
+  const [orderTotal, setOrderTotal] = useState(0);
+  const [clearClicked, setClearClicked] = useState(false);
+  const [orderDetails, setOrderDetails] = useState([]);
+  const [toastVisible, setToastVisible] = useState(false);
+
+  const modifyOrderDetails = (title, count) => {
+    setOrderDetails((prevDetails) => {
+      const itemExists = prevDetails.some((item) => item.title === title);
+      if (!itemExists) {
+        return [...prevDetails, { title, count }];
+      } else {
+        const updatedDetails = prevDetails.map((item) => {
+          if (item.title === title) {
+            return { ...item, count: item.count + count };
+          }
+          return item;
+        });
+        const filteredDetails = updatedDetails.filter((item) => item.count > 0);
+
+        return filteredDetails;
+      }
+    });
+  };
+  const changePrice = (price) => {
+    if (orderTotal + price < 0) {
+      return;
+    }
+    setOrderTotal((prevTotal) => Math.round((prevTotal + price) * 100) / 100);
+  };
+  const clearOrder = () => {
+    setOrderTotal(0);
+    setOrderDetails([]);
+    setClearClicked(true);
+  };
+  const orderNotification = () => {
+    if (orderTotal === 0) {
+      toast("No Items Selected!", {
+        onOpen: () => {
+          setToastVisible(true);
+        },
+        onClose: () => {
+          setToastVisible(false);
+        },
+      });
+      return;
+    }
+    var lines = [
+      <div key="order">
+        <p>Order Placed!</p>
+      </div>,
+    ];
+    orderDetails.forEach((item, index) => {
+      lines.push(
+        <div key={`item-${index}`}>
+          <p>
+            {item.title} x {item.count}
+          </p>
+        </div>
+      );
+    });
+
+    const displayString = (
+      <div>
+        <div>{lines}</div>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <button
+            type="button"
+            className="btn btn-outline-secondary orderButton"
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    );
+    toast(displayString, {
+      onOpen: () => {
+        setToastVisible(true);
+      },
+      onClose: () => {
+        setToastVisible(false);
+      },
+    });
+  };
   return (
     <div>
       <MenuHeader />
@@ -94,10 +181,20 @@ function App() {
               description={item.description}
               imageName={item.imageName}
               price={item.price}
+              changePrice={changePrice}
+              clearClicked={clearClicked}
+              modifyOrderDetails={modifyOrderDetails}
+              setClearClicked={setClearClicked}
             />
           ))}
         </ul>
       </div>
+      <Subtotal
+        orderTotal={orderTotal}
+        orderNotification={orderNotification}
+        clearOrder={clearOrder}
+        toastVisible={toastVisible}
+      />
     </div>
   );
 }

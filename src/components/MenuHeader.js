@@ -4,7 +4,9 @@ import "./styles/MenuHeader.css"
 const MenuHeader = () => {
     return <>
      <div className="mainTitleContainer">
-        <img src="images/logo.png" alt="logoImage" className="logoImage" />
+        <img src="./images/logo.png" alt="logoImage" className="logoImage" />
+        {/* <img src={logo} alt="logoImage" className="logoImage" /> */}
+
         <TitleText />
       </div>
     </>
